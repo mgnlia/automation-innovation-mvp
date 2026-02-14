@@ -3,7 +3,7 @@
 ## P0 Gate
 
 - [x] Public GitHub repo with runnable MVP scaffold
-- [x] First live Vercel deploy URL (to be backfilled in README + task)
+- [x] First live Vercel deploy URL documented in README (`https://flowpilot-mvp-tau.vercel.app`)
 - [x] Operator demo flow documented in README
 - [x] Core automation panels implemented in UI
 

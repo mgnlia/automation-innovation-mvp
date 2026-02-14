@@ -1,21 +1,8 @@
-# Node
 node_modules/
-*.log
-
-# Python
-__pycache__/
-*.pyc
-.pytest_cache/
-.venv/
-
-# Build outputs
-dist/
-.coverage
-
-# Env
+coverage/
+.dist/
 .env
-.env.*
-!.env.example
-
-# OS
-.DS_Store
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc

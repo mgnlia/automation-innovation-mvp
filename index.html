@@ -7,155 +7,110 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main class="container">
-      <header class="hero card">
-        <div>
-          <h1>FlowPilot</h1>
-          <p>
-            Unified inventory automation cockpit with rule-based orchestration,
-            heuristic restock AI, and real-time sync simulation.
-          </p>
-        </div>
-        <span id="sync-status" class="status-pill">sync: idle</span>
-      </header>
+    <header class="topbar">
+      <h1>FlowPilot</h1>
+      <p>Automation Innovation MVP — inventory automation operator console</p>
+    </header>
 
-      <section class="grid-4 stats">
-        <article class="metric card">
-          <h3>Total SKUs</h3>
-          <p id="metric-skus">0</p>
-        </article>
-        <article class="metric card">
-          <h3>Low Stock</h3>
-          <p id="metric-low-stock">0</p>
-        </article>
-        <article class="metric card">
-          <h3>Anomalies</h3>
-          <p id="metric-anomalies">0</p>
-        </article>
-        <article class="metric card">
-          <h3>Alerts</h3>
-          <p id="metric-alerts">0</p>
-        </article>
-      </section>
-
-      <section class="card">
-        <div class="section-title-row">
+    <main class="grid">
+      <section class="card" id="dashboard-card">
+        <div class="card-header">
           <h2>Unified Inventory Dashboard</h2>
-          <button id="refresh-dashboard" class="secondary">Refresh</button>
+          <span id="inventory-summary" class="pill"></span>
         </div>
-        <div class="table-wrap">
-          <table id="inventory-table">
-            <thead>
-              <tr>
-                <th>SKU</th>
-                <th>Item</th>
-                <th>Stock</th>
-                <th>Reorder Point</th>
-                <th>Avg Daily Sales</th>
-                <th>Lead Time</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>SKU</th>
+              <th>Name</th>
+              <th>Stock</th>
+              <th>Status</th>
+              <th>Velocity/day</th>
+            </tr>
+          </thead>
+          <tbody id="inventory-body"></tbody>
+        </table>
       </section>
 
-      <section class="grid-2">
-        <article class="card">
-          <h2>If/Then Automation Rule Engine</h2>
-          <form id="rule-form" class="stack">
-            <label>
-              IF condition
-              <select id="rule-condition" required>
-                <option value="stock_below">Stock below threshold</option>
-                <option value="anomaly_above">Anomaly score above threshold</option>
-                <option value="event_type">Incoming webhook event type equals</option>
-              </select>
-            </label>
-            <label>
-              Threshold / Match Value
-              <input id="rule-value" required placeholder="e.g. 20 or anomaly" />
-            </label>
-            <label>
-              THEN action
-              <select id="rule-action" required>
-                <option value="create_restock_ticket">Create restock ticket</option>
-                <option value="send_ops_alert">Send ops alert</option>
-                <option value="notify_finance">Notify finance</option>
-                <option value="pause_auto_order">Pause auto-order flow</option>
-              </select>
-            </label>
-            <button type="submit">Add Automation Rule</button>
-          </form>
-          <ul id="rules-list" class="stack compact"></ul>
-        </article>
+      <section class="card" id="rules-card">
+        <div class="card-header">
+          <h2>If / Then Rule Engine</h2>
+        </div>
+        <form id="rule-form" class="row">
+          <label>
+            IF
+            <select id="rule-condition" required>
+              <option value="stock_below">stock_below</option>
+            </select>
+          </label>
+          <label>
+            value
+            <input id="rule-value" type="number" min="1" value="20" required />
+          </label>
+          <label>
+            THEN
+            <select id="rule-action" required>
+              <option value="create_restock_ticket">create_restock_ticket</option>
+              <option value="raise_alert">raise_alert</option>
+            </select>
+          </label>
+          <button type="submit">Add Rule</button>
+        </form>
+        <ul id="rules-list" class="list"></ul>
+      </section>
 
-        <article class="card">
+      <section class="card" id="simulation-card">
+        <div class="card-header">
           <h2>Real-time Sync / Webhook Simulation</h2>
-          <div class="inline-actions">
-            <button id="start-sim">Start Stream</button>
-            <button id="pause-sim" class="secondary">Pause</button>
-            <button id="step-sim" class="secondary">Run One Event</button>
-          </div>
+        </div>
+        <div class="row controls">
+          <button id="start-sim">Start Stream</button>
+          <button id="stop-sim" class="secondary">Stop Stream</button>
+          <button id="run-one" class="secondary">Run One Event</button>
+        </div>
 
-          <form id="webhook-form" class="stack compact">
-            <h3>Inject Webhook Event</h3>
-            <label>
-              SKU
-              <select id="webhook-sku"></select>
-            </label>
-            <label>
-              Event Type
-              <select id="webhook-type">
-                <option value="sale">sale</option>
-                <option value="restock">restock</option>
-                <option value="correction">correction</option>
-                <option value="anomaly">anomaly</option>
-              </select>
-            </label>
-            <label>
-              Delta
-              <input id="webhook-delta" type="number" value="8" required />
-            </label>
-            <button type="submit">Send Webhook</button>
-          </form>
-
-          <ul id="event-log" class="event-log"></ul>
-        </article>
+        <form id="inject-form" class="row">
+          <label>
+            SKU
+            <select id="inject-sku"></select>
+          </label>
+          <label>
+            Type
+            <select id="inject-type">
+              <option value="sale">sale</option>
+              <option value="restock">restock</option>
+              <option value="adjustment">adjustment</option>
+            </select>
+          </label>
+          <label>
+            Delta
+            <input id="inject-delta" type="number" value="8" min="1" required />
+          </label>
+          <button type="submit">Inject Webhook</button>
+        </form>
       </section>
 
-      <section class="grid-2">
-        <article class="card">
-          <div class="section-title-row">
-            <h2>AI Restock Predictor (Heuristic)</h2>
-            <button id="run-predictor" class="secondary">Run Predictor</button>
-          </div>
-          <p class="muted">
-            Heuristic = demand during lead time + volatility buffer - current stock.
-          </p>
-          <div class="table-wrap">
-            <table id="prediction-table">
-              <thead>
-                <tr>
-                  <th>SKU</th>
-                  <th>Recommended Reorder</th>
-                  <th>Confidence</th>
-                  <th>Risk</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-        </article>
+      <section class="card" id="predictor-card">
+        <div class="card-header">
+          <h2>AI Restock Predictor</h2>
+          <button id="run-predictor">Run Predictor</button>
+        </div>
+        <ul id="predictor-output" class="list"></ul>
+      </section>
 
-        <article class="card">
-          <div class="section-title-row">
-            <h2>Alerting</h2>
-            <button id="clear-alerts" class="secondary">Clear Alerts</button>
-          </div>
-          <ul id="alerts-list" class="stack"></ul>
-        </article>
+      <section class="card" id="alerts-card">
+        <div class="card-header">
+          <h2>Alerting</h2>
+          <span id="alert-count" class="pill"></span>
+        </div>
+        <ul id="alerts-list" class="list"></ul>
+      </section>
+
+      <section class="card" id="stream-card">
+        <div class="card-header">
+          <h2>Event Stream</h2>
+        </div>
+        <ul id="stream-list" class="list mono"></ul>
       </section>
     </main>
 

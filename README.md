@@ -1,16 +1,16 @@
 # FlowPilot — Automation Innovation MVP
 
-FlowPilot is a judge-aligned MVP for the Automation Innovation Hackathon focused on inventory automation outcomes:
+FlowPilot is a judge-aligned MVP for inventory automation outcomes:
 
-- unified inventory dashboard
-- if/then automation rule engine
-- heuristic AI restock predictor
-- real-time webhook/sync simulation
-- low-stock and anomaly alerting
+- Unified inventory dashboard
+- If/then automation rule engine
+- Heuristic AI restock predictor
+- Real-time webhook/sync simulation
+- Low-stock and anomaly alerting
 
 ## Live URL
 
-- **Production:** _pending first Vercel deploy in this environment (CLI missing)_
+- **Production:** _pending deploy from this run_
 
 ## Demo flow (3 minutes)
 
@@ -24,7 +24,7 @@ FlowPilot is a judge-aligned MVP for the Automation Innovation Hackathon focused
 5. Inject a `sale` webhook for a low-stock SKU (delta `8`) and observe:
    - stock decrement in dashboard
    - alert creation in Alerting panel
-   - rule-fired events in the stream log
+   - rule-fired events in stream log
 6. Click **Run Predictor** in **AI Restock Predictor** and explain reorder recommendations.
 
 ## Architecture
@@ -92,14 +92,3 @@ GitHub Actions (`.github/workflows/ci.yml`) runs:
 ## Submission mapping
 
 See `checklists/submission-mapping.md` for P0/judge criteria mapping.
-
-## Current blockers
-
-- **Deployment blocker in runtime environment:** `vercel` executable is not available in PATH, so first production URL cannot be generated from this runner yet.
-- Once Vercel CLI is available, run:
-
-```bash
-vercel --prod --token "$VERCEL_TOKEN"
-```
-
-and paste URL above.

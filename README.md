@@ -10,7 +10,7 @@ FlowPilot is a judge-aligned MVP for inventory automation outcomes:
 
 ## Live URL
 
-- **Production:** _pending deploy from this run_
+- **Production:** https://flowpilot-mvp-tau.vercel.app
 
 ## Demo flow (3 minutes)
 
@@ -88,6 +88,19 @@ GitHub Actions (`.github/workflows/ci.yml`) runs:
 
 - Python tests (`uv run pytest`)
 - TypeScript typecheck and tests (`npm run typecheck`, `npm run test`)
+
+## Deployment
+
+### Vercel (Static Frontend)
+
+The `vercel` CLI is **not available** in the runner. Use the Vercel REST API instead:
+
+```bash
+# Using the deploy script (no CLI needed)
+node deploy-vercel.mjs /path/to/static/files
+```
+
+Requires `VERCEL_TOKEN` environment variable.
 
 ## Submission mapping
 

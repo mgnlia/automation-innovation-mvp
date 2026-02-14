@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Automation Innovation MVP</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <h1>Automation Copilot MVP</h1>
+        <p>Generate a safe, auditable automation workflow in seconds.</p>
+      </header>
+
+      <section class="card">
+        <label>
+          Objective
+          <input id="goal" placeholder="e.g. Triage inbound support tickets" />
+        </label>
+
+        <div class="grid">
+          <label>
+            Trigger
+            <select id="trigger">
+              <option>Email received</option>
+              <option>CRM status changed</option>
+              <option>Webhook event</option>
+              <option>Scheduled batch</option>
+            </select>
+          </label>
+
+          <label>
+            Primary Action
+            <select id="action">
+              <option>Classify + route</option>
+              <option>Create task + notify owner</option>
+              <option>Draft response + request approval</option>
+              <option>Update dashboard + alert</option>
+            </select>
+          </label>
+        </div>
+
+        <label>
+          Guardrail
+          <select id="guardrail">
+            <option>Human approval for high-risk cases</option>
+            <option>Confidence threshold >= 0.85</option>
+            <option>No external action without ticket ID</option>
+            <option>Rate limit to 50 events/minute</option>
+          </select>
+        </label>
+
+        <button id="generate">Generate Automation Plan</button>
+      </section>
+
+      <section class="card">
+        <h2>Workflow Plan</h2>
+        <pre id="plan">No plan generated yet.</pre>
+      </section>
+
+      <section class="card">
+        <h2>Execution Simulation</h2>
+        <ul id="simulation"></ul>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

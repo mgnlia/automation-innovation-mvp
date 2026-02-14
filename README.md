@@ -11,6 +11,7 @@ FlowPilot is a judge-aligned MVP for inventory automation outcomes:
 ## Live URL
 
 - **Production:** https://flowpilot-mvp-tau.vercel.app
+- **Verification evidence:** URL loads the FlowPilot operator console UI (validated 2026-02-14).
 
 ## Demo flow (3 minutes)
 

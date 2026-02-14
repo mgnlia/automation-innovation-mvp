@@ -1,28 +1,43 @@
-# Submission Mapping (Automation Innovation Hackathon)
+# Submission Mapping (Automation Innovation Hackathon) — FlowPilot
 
 ## Judge-aligned checklist
 
-- [x] **Problem clarity**: Automation Copilot focuses on safe workflow generation + execution transparency.
-- [x] **Innovation**: Guardrail-first workflow planning + live simulation audit trail in one lightweight UI.
-- [x] **Technical execution**: Frontend MVP + Python planning API + TS orchestrator simulation service.
-- [x] **Usability/demo**: 2-3 minute deterministic flow in README.
-- [ ] **Impact metrics**: Add measured time-saved/error-rate benchmarks (next iteration).
-- [ ] **Polish**: Add persistent templates and richer execution graph visualization.
+- [x] **Problem clarity**: FlowPilot addresses inventory stockouts and brittle, manual reorder coordination.
+- [x] **Innovation**: Unified inventory + if/then rules + heuristic AI restock predictor + real-time webhook simulation in one operator surface.
+- [x] **Technical execution**: Frontend MVP + Python planning/simulation API (`uv`) + TS rules orchestrator + CI tests.
+- [x] **Usability/demo**: Deterministic 3-minute flow in README with expected outputs.
+- [ ] **Impact metrics**: Add benchmark deltas (stockout reduction %, mean response time, intervention rate).
+- [ ] **Polish**: Add persistence layer + role-based views + connector adapters.
 
-## Demo script mapping
+## P0 requirement mapping
 
-1. **Context (20s)**: teams lose time wiring brittle automations; we provide safe one-click workflow plans.
-2. **Input (30s)**: set objective, trigger, action, guardrail.
-3. **Plan generation (40s)**: show auditable steps and expected KPI targets.
-4. **Simulation (30s)**: show deterministic execution trace and compliance guardrail pass.
-5. **Architecture (30s)**: frontend + Python planner + TS orchestrator with CI + deploy-first loop.
-6. **Roadmap (20s)**: add real connectors, model routing, benchmark dashboard.
+- [x] Unified inventory dashboard
+- [x] If/then automation rule engine
+- [x] AI restock predictor (heuristic)
+- [x] Real-time sync simulation / webhook events
+- [x] Alerting for low stock / anomalies
+- [x] Clean architecture + docs
+
+## Demo script mapping (3 minutes)
+
+1. **Problem framing (20s)**
+   - Teams miss reorder windows because inventory signals are fragmented.
+2. **Dashboard (35s)**
+   - Show SKUs, current stock, reorder points, and risk status badges.
+3. **Rule engine (40s)**
+   - Add rule: `IF stock_below 20 THEN create_restock_ticket`.
+4. **Real-time simulation (40s)**
+   - Start event stream and inject webhook sale events; show stock updates and rule-triggered alerts.
+5. **AI predictor (30s)**
+   - Run predictor and explain formula: demand during lead time + volatility buffer.
+6. **Architecture + reliability (35s)**
+   - Walk Python + TS endpoints, CI checks, and Vercel production URL.
 
 ## Submission assets checklist
 
 - [x] Public GitHub repo
-- [x] Live production URL (Vercel)
+- [ ] Live production URL (Vercel)
 - [x] README with setup + demo flow
 - [ ] Short demo video (<=3 min)
 - [ ] Architecture diagram
-- [ ] Final impact metrics snapshot
+- [ ] Impact metrics snapshot
